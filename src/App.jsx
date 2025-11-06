@@ -1,26 +1,27 @@
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Features from "./components/Features";
-import Footer from "./components/Footer";
-import ErrorBoundary from "./components/ErrorBoundary";
-import GlobalGuards from "./components/GlobalGuards";
-import ProviderGuide from "./components/ProviderGuide";
-import CTA from "./components/CTA";
+import React from 'react';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Features from './components/Features';
+import ProviderGuide from './components/ProviderGuide';
+import CTA from './components/CTA';
+import Footer from './components/Footer';
+import ErrorBoundary from './components/ErrorBoundary';
+import GlobalGuards from './components/GlobalGuards';
 
-function App() {
+export default function App() {
   return (
-    <div className="min-h-screen bg-[radial-gradient(ellipse_at_top_right,rgba(99,102,241,0.12),transparent_40%),radial-gradient(ellipse_at_bottom_left,rgba(59,130,246,0.12),transparent_40%)] text-neutral-900">
+    <div className="min-h-screen bg-white dark:bg-neutral-950 selection:bg-indigo-500/20 selection:text-indigo-900 dark:selection:text-indigo-200">
       <GlobalGuards />
       <Navbar />
-      <ErrorBoundary>
-        <Hero />
-      </ErrorBoundary>
-      <Features />
-      <ProviderGuide />
-      <CTA />
+      <main>
+        <ErrorBoundary>
+          <Hero />
+        </ErrorBoundary>
+        <Features />
+        <ProviderGuide />
+        <CTA />
+      </main>
       <Footer />
     </div>
   );
 }
-
-export default App;

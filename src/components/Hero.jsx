@@ -1,64 +1,37 @@
-import Spline from "@splinetool/react-spline";
-import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import React from 'react';
+import Spline from '@splinetool/react-spline';
+import { Rocket, Sparkles } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[84vh] w-full overflow-hidden flex items-center" id="home">
-      {/* Spline full-bleed cover background */}
+    <section id="home" className="relative w-full min-h-[80vh] sm:min-h-[88vh] flex items-center">
       <div className="absolute inset-0">
-        <Spline
-          scene="https://prod.spline.design/zhZFnwyOYLgqlLWk/scene.splinecode"
-          style={{ width: "100%", height: "100%" }}
-        />
-        {/* Top gradient for readability; doesn't block interaction */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white via-white/40 to-white/10" />
+        <Spline scene="https://prod.spline.design/zhZFnwyOYLgqlLWk/scene.splinecode" style={{ width: '100%', height: '100%' }} />
       </div>
 
-      {/* Foreground content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-10 items-center w-full">
-        <motion.div
-          className="max-w-xl"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="inline-flex items-center gap-2 text-sm font-medium text-indigo-700 bg-white/70 backdrop-blur rounded-full px-3 py-1 mb-4 border border-indigo-100">
-            AI Resume Builder • Multi‑Model
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-neutral-900 mb-4 drop-shadow-sm">
-            Build job‑winning resumes with GPT, Claude, and Gemini.
-          </h1>
-          <p className="text-lg text-neutral-700 mb-8 max-w-prose">
-            Craft tailored resumes from your profile, uploads, and prompts. Choose your AI provider, paste your API key with guidance, and export to PDF or DOCX.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <motion.a
-              href="#cta"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-neutral-900 text-white hover:bg-neutral-800 transition shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900"
-            >
-              Get started free <ArrowRight size={16} />
-            </motion.a>
-            <motion.a
-              href="#features"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-5 py-3 rounded-lg border border-neutral-200 bg-white/70 backdrop-blur hover:bg-white transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-200"
-            >
-              View templates
-            </motion.a>
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/70 via-white/40 to-white/80 dark:from-neutral-950/70 dark:via-neutral-950/30 dark:to-neutral-950/80" />
+
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-24">
+        <div className="max-w-2xl">
+          <div className="inline-flex items-center gap-2 rounded-full border border-black/10 dark:border-white/10 bg-white/70 dark:bg-neutral-900/60 px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-200 backdrop-blur">
+            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+            Multi‑model Resume Builder
           </div>
-          <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-neutral-700">
-            <li>• Secure, local API key usage</li>
-            <li>• Upload old resumes and job descriptions</li>
-            <li>• Real‑time preview and export</li>
-            <li>• Organize multiple projects</li>
-          </ul>
-        </motion.div>
-        {/* Spacer to balance layout on large screens */}
-        <div className="hidden lg:block" />
+          <h1 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-neutral-900 dark:text-white">
+            Craft standout resumes with AI
+          </h1>
+          <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-300">
+            Build, iterate, and export beautiful resumes powered by OpenAI, Anthropic, and Gemini — all in one place.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <a href="#features" className="inline-flex items-center gap-2 rounded-md bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 px-4 py-2 font-medium shadow-sm hover:opacity-90 transition">
+              <Rocket className="w-4 h-4" /> Explore features
+            </a>
+            <a href="#cta" className="inline-flex items-center gap-2 rounded-md border border-neutral-200 dark:border-white/10 px-4 py-2 font-medium text-neutral-700 dark:text-neutral-200 bg-white/70 dark:bg-neutral-900/60 backdrop-blur hover:bg-white hover:dark:bg-neutral-900 transition">
+              Get started
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

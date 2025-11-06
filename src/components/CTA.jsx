@@ -1,41 +1,49 @@
-import { FileDown, FileText, Loader2 } from "lucide-react";
-import { useState } from "react";
-import { motion } from "framer-motion";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Loader2, FileDown } from 'lucide-react';
 
 export default function CTA() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = React.useState(false);
+
+  const handleStart = () => {
+    setLoading(true);
+    const timeout = setTimeout(() => {
+      setLoading(false);
+      const el = document.getElementById('home');
+      el?.scrollIntoView({ behavior: 'smooth' });
+    }, 1200);
+    return () => clearTimeout(timeout);
+  };
 
   return (
-    <section id="cta" className="py-16 bg-gradient-to-b from-neutral-50 to-white">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="cta" className="py-16 sm:py-20">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.4 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5 }}
-          className="rounded-2xl border p-6 sm:p-8 bg-white shadow-sm"
+          className="rounded-2xl border border-black/5 dark:border-white/10 bg-gradient-to-br from-white to-white/60 dark:from-neutral-900 dark:to-neutral-900/60 p-8 sm:p-10 shadow-sm"
         >
-          <div className="flex flex-col lg:flex-row items-center gap-6 justify-between">
-            <div className="max-w-xl">
-              <h3 className="text-2xl font-bold mb-2">Start your first resume in minutes</h3>
-              <p className="text-neutral-600">Upload your old resume or job description and generate a tailored, ATS‑friendly resume with real‑time preview. Export as PDF or DOCX.</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <motion.button
-                onClick={() => setLoading(true)}
-                whileHover={{ y: -1 }}
-                whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-neutral-900 text-white hover:bg-neutral-800 transition"
+          <div className="max-w-2xl">
+            <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">
+              Ready to build your next resume?
+            </h3>
+            <p className="mt-2 text-neutral-600 dark:text-neutral-300">
+              Start a project in seconds. Import your LinkedIn, pick a template, and generate bullet points with AI.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <button
+                onClick={handleStart}
+                className="inline-flex items-center gap-2 rounded-md bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 px-4 py-2 font-medium hover:opacity-90 transition disabled:opacity-60"
+                disabled={loading}
               >
-                {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <FileText className="h-4 w-4" />} New project
-              </motion.button>
-              <motion.button
-                whileHover={{ y: -1 }}
-                whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-neutral-200 hover:bg-neutral-50 transition"
-              >
-                <FileDown className="h-4 w-4" /> Try export
-              </motion.button>
+                {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
+                {loading ? 'Starting…' : 'New project'}
+              </button>
+              <button className="inline-flex items-center gap-2 rounded-md border border-neutral-200 dark:border-white/10 px-4 py-2 font-medium text-neutral-700 dark:text-neutral-200 bg-white/70 dark:bg-neutral-900/60 backdrop-blur hover:bg-white hover:dark:bg-neutral-900 transition">
+                <FileDown className="w-4 h-4" /> Try export
+              </button>
             </div>
           </div>
         </motion.div>

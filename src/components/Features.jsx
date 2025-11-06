@@ -1,4 +1,5 @@
 import { Shield, FileText, Upload, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 
 const features = [
   {
@@ -25,20 +26,33 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="py-16 border-t bg-gradient-to-b from-white to-neutral-50">
+    <section id="features" className="py-16 border-t bg-gradient-to-b from-white to-neutral-50">
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-8">
+        <motion.h2
+          className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-8"
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.5 }}
+        >
           Everything you need to build a standout resume
-        </h2>
+        </motion.h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((f, i) => (
-            <div key={i} className="rounded-xl border bg-white p-5 shadow-sm">
-              <div className="h-9 w-9 rounded-lg bg-neutral-900 text-white grid place-items-center mb-4">
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.45, delay: i * 0.06 }}
+              className="group rounded-xl border bg-white p-5 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+            >
+              <div className="h-9 w-9 rounded-lg bg-neutral-900 text-white grid place-items-center mb-4 group-hover:scale-105 transition-transform">
                 {f.icon}
               </div>
               <h3 className="font-semibold mb-1">{f.title}</h3>
               <p className="text-sm text-neutral-600">{f.desc}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

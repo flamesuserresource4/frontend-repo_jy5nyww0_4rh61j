@@ -1,15 +1,16 @@
 import { KeyRound, ExternalLink, Bot, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 
 const providers = [
   {
     name: "OpenAI",
-    models: ["GPT‑4o", "GPT‑4o mini", "GPT‑5 (when available)"],
+    models: ["GPT‑4o", "GPT‑4o mini"],
     docs: "https://platform.openai.com/api-keys",
     note: "Create a key in the OpenAI dashboard and keep it private.",
   },
   {
     name: "Anthropic",
-    models: ["Claude 3.5 Sonnet", "Claude 3.5 Haiku", "Claude Sonnet 4.5 (preview)"],
+    models: ["Claude 3.5 Sonnet", "Claude 3.5 Haiku"],
     docs: "https://console.anthropic.com/",
     note: "Enable API access and generate a Claude API key.",
   },
@@ -43,8 +44,18 @@ export default function ProviderGuide() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {providers.map((p) => (
-            <div key={p.name} className="rounded-xl border p-5 bg-neutral-50/60 hover:bg-neutral-50 transition">
+          {providers.map((p, idx) => (
+            <motion.a
+              key={p.name}
+              href={p.docs}
+              target="_blank"
+              rel="noreferrer"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.45, delay: idx * 0.06 }}
+              className="block rounded-xl border p-5 bg-neutral-50/60 hover:bg-neutral-50 transition hover:shadow-md hover:-translate-y-0.5"
+            >
               <div className="flex items-center justify-between mb-3">
                 <h3 className="font-semibold text-neutral-900">{p.name}</h3>
                 <Sparkles className="h-4 w-4 text-indigo-500" />
@@ -54,18 +65,11 @@ export default function ProviderGuide() {
                   <li key={m}>{m}</li>
                 ))}
               </ul>
-              <div className="flex items-center gap-2">
-                <a
-                  href={p.docs}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-indigo-600 hover:text-indigo-700"
-                >
-                  How to get an API key <ExternalLink size={14} />
-                </a>
+              <div className="flex items-center gap-2 text-indigo-600">
+                How to get an API key <ExternalLink size={14} />
               </div>
               <p className="text-xs text-neutral-500 mt-3">{p.note}</p>
-            </div>
+            </motion.a>
           ))}
         </div>
       </div>

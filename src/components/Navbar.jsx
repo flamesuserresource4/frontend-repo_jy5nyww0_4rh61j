@@ -15,13 +15,13 @@ export default function Navbar() {
         </div>
         <div className="flex items-center gap-2">
           <a
-            href="#cta"
+            href="#signin"
             className="inline-flex items-center rounded-md border border-neutral-200 dark:border-white/10 px-3 py-1.5 text-sm font-medium text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-white/5 transition"
           >
             Sign in
           </a>
           <a
-            href="#cta"
+            href="#signup"
             className="inline-flex items-center rounded-md bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 px-3.5 py-1.5 text-sm font-medium hover:opacity-90 transition"
           >
             New project

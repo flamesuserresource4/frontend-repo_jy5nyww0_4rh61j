@@ -7,6 +7,9 @@ import CTA from './components/CTA';
 import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
 import GlobalGuards from './components/GlobalGuards';
+import AuthHero from './components/AuthHero';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
 
 export default function App() {
   return (
@@ -20,6 +23,9 @@ export default function App() {
         <Features />
         <ProviderGuide />
         <CTA />
+        <AuthHero />
+        <SignIn />
+        <SignUp />
       </main>
       <Footer />
     </div>

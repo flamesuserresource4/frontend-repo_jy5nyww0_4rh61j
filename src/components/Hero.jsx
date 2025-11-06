@@ -1,7 +1,10 @@
+import { useState } from "react";
 import Spline from "@splinetool/react-spline";
 import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
+  const [disable3D, setDisable3D] = useState(false);
+
   return (
     <section className="relative min-h-[68vh] grid lg:grid-cols-2 items-center overflow-hidden">
       <div className="order-2 lg:order-1 px-6 py-16 max-w-6xl mx-auto w-full">
@@ -23,7 +26,16 @@ export default function Hero() {
               View templates
             </button>
           </div>
-          <ul className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-neutral-600">
+          <div className="mt-4">
+            <button
+              type="button"
+              className="text-xs text-neutral-600 hover:text-neutral-900 underline"
+              onClick={() => setDisable3D((v) => !v)}
+            >
+              {disable3D ? "Enable 3D preview" : "Disable 3D preview"}
+            </button>
+          </div>
+          <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-neutral-600">
             <li>• Secure, local API key usage</li>
             <li>• Upload old resumes and job descriptions</li>
             <li>• Real‑time preview and export</li>
@@ -31,8 +43,16 @@ export default function Hero() {
           </ul>
         </div>
       </div>
-      <div className="order-1 lg:order-2 h-[44vh] lg:h-full">
-        <Spline scene="https://prod.spline.design/5O0y0r0mW3s4/scene.splinecode" style={{ width: "100%", height: "100%" }} />
+      <div className="order-1 lg:order-2 h-[44vh] lg:h-full relative">
+        {!disable3D ? (
+          <Spline
+            scene="https://prod.spline.design/Qe6dlWJktclXcUBS/scene.splinecode"
+            style={{ width: "100%", height: "100%" }}
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-indigo-200 via-purple-200 to-blue-200" />
+        )}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-transparent" />
       </div>
     </section>
   );
